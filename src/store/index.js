@@ -7,7 +7,7 @@ export const initialState = {
             card: {
                 id: 0,
                 answerHidden: false,
-                question: "How to buffer an object",
+                question: "How to buffer an object ?",
                 answer: "Buffer.from(JSON.stringify(object)).toString() ",
             }
         },
@@ -16,7 +16,7 @@ export const initialState = {
                 {
                     id: 1,
                     answerHidden: false,
-                    question: "What means API?",
+                    question: "What means API ?",
                     answer: "Application program interface",
                 }
         },
@@ -41,7 +41,7 @@ export const initialState = {
                 {
                     id: 4,
                     answerHidden: false,
-                    question: "What is a ternary?",
+                    question: "What is a ternary ?",
                     answer: "One line if",
                 }
         },
@@ -49,5 +49,5 @@ export const initialState = {
 };
 
 const store = createStore(rootReducer, initialState);
-
+console.log(store);
 export default store;

@@ -1,15 +1,63 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { showAnswer, hideCard } from "../actions";
 
-import Card from './Cards';
+import visibility from '../assets/visibility_grey_24x24.png';
+import visibilityoff from '../assets/visibility_off_grey_24x24.png';
 
-const CardsPage = ({ cards }) => {
+class CardsPage extends React.Component {
 
-    return (
-        <section className="section">
-            <Card />
-        </section>
-    )
+    showAnswer = (index) => {
+        this.props.showAnswer(index);
+    };
+
+    hideCard = (index) => {
+        this.props.hideCard(index)
+    };
+
+    render() {
+        const cards = this.props.cards.map((cards, index) => {
+
+                return (
+                    <>
+                        <div className="card">
+                            <p key={index} onClick={() => this.showAnswer(index)}
+                               className={cards.card.visible ? 'visibilityOff' : ''}>
+                                {cards.card.answerHidden ? cards.card.answer : cards.card.question}
+                            </p>
+                        </div>
+                        <div>
+                            <p key={index} onClick={() => this.hideCard(index)}>
+                                {cards.card.visible === false ? <img src={visibility} alt="visibility"/> : <img src={visibilityoff} alt="visibilityoff" />}
+                            </p>
+                        </div>
+                    </>
+                );
+            }
+        );
+
+        return (
+            <>
+                <div>
+                    <ul>
+                        {cards}
+                    </ul>
+                </div>
+            </>
+        )
+    }
+
+}
+
+const mapStateToProps = (state) => {
+    return {
+        cards: state.cards,
+    };
 };
 
+const mapDispatchToProps =  {
+    showAnswer: showAnswer,
+    hideCard: hideCard,
+};
 
-export default CardsPage;
+export default connect(mapStateToProps, mapDispatchToProps)(CardsPage);

@@ -1,4 +1,4 @@
-import { SHOW_ANSWER, HIDE_CARD } from "../constants/action-types";
+import {SHOW_ANSWER, HIDE_CARD, NEXT_CARD} from "../constants/action-types";
 
 const rootReducer = (state, action) => {
     switch(action.type) {
@@ -56,6 +56,12 @@ const rootReducer = (state, action) => {
                         })
                     }
                 })
+            }
+        }
+        case NEXT_CARD: {
+            console.log(state.cards);
+            return {
+                cards: state.cards.filter((card, index) => index !== action.id)
             }
         }
         default:
