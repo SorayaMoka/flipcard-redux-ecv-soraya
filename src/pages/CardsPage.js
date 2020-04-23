@@ -5,8 +5,7 @@ import Card from './Cards';
 const CardsPage = ({ cards }) => {
 
     return (
-        <section>
-            <h1>Cards</h1>
+        <section className="section">
             <Card />
         </section>
     )
